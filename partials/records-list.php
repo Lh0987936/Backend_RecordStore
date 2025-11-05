@@ -4,7 +4,7 @@ require_once 'data/functions.php';
 $record_list = records_all();
 ?>
 <div>
-    <table>
+    <table class="table">
         <th>Title</th>
         <th>Artist</th>
         <th>Price</th>
