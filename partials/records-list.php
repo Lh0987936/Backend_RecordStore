@@ -24,7 +24,7 @@ $record_list = records_all();
                             <input type="hidden" name="action" value="edit">
                             <button class="btn">Edit</button>
                         </form>
-                        <form method="post" class="d-inline">
+                        <form method="post" class="d-inline" onsubmit="return confirm('are you sure you want to delete this book?');">
                             <input type="hidden" name="id" value="<?= (int)$row['id'] ?>">
                             <input type="hidden" name="action" value="delete">
                             <button class="btn">Delete</button>
