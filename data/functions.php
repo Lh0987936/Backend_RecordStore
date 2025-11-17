@@ -30,23 +30,24 @@ function record_get(int $id) {
     $stmt = $pdo->prepare("
     Select r.id, r.title, r.artist, r.price, f.name 
     FROM records as r
-    JOIN formats as f ON r.format_id = f.format_id
+    JOIN formats as f ON r.format_id = f.id
     WHERE r.id = :id");
-    $stmt->execute([":id => $id"]);
+    $stmt->execute([":id" => $id]);
+    $return = $stmt->fetch();
+    return $return ?: null;
 }
 function record_delete(int $id) {
 $pdo = get_pdo();
-$stmt = $pdo->prepare("DELETE FROM records WHERE id => :id");
+$stmt = $pdo->prepare("DELETE FROM records WHERE id = :id");
 $stmt->execute([':id' => $id]);
 }
 function record_update(int $id, string $title, string $artist, float $price, int $format_id) {
     $pdo = get_pdo();
     $sql = "UPDATE RECORDS SET 
-    :title,
-    :artist,
-    :price,
-    :format_id,
-    :id
+    title = :title,
+    artist = :artist,
+    price = :price,
+    format_id = :format_id
     WHERE id = :id
     ";
     $stmt = $pdo->prepare($sql);

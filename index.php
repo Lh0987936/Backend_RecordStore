@@ -29,7 +29,7 @@ switch ($action) {
         break;
     case 'edit':
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
-
+        print_r($id);
         if ($id) {
             $record = record_get($id);
         }
@@ -42,7 +42,7 @@ switch ($action) {
         $input_price = filter_input(INPUT_POST, 'price', FILTER_UNSAFE_RAW);
         $format_id = filter_input(INPUT_POST, 'format_id', FILTER_VALIDATE_INT);
 
-        $price = is_numeric($input_price) ? (float)$price_in : null;
+        $price = is_numeric($input_price) ? (float)$input_price : null;
 
         if ($id && $title !== '' && $artist !== '' && $price !== null && $format_id !== null) {
             record_update($id, $title, $artist, $price, (int)$format_id);

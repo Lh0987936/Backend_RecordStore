@@ -13,7 +13,6 @@ $record_list = records_all();
         <?php if (count($record_list) > 0): ?>
             <?php foreach ($record_list as $row) { ?>
                 <tr>
-                    <td><?=(int)$row['id']?></td>
                     <td><?= htmlspecialchars($row['title']) ?></td>
                     <td><?= htmlspecialchars($row['artist']) ?></td>
                     <td>$<?= number_format((float)$row['price'], 2) ?></td>
@@ -24,7 +23,7 @@ $record_list = records_all();
                             <input type="hidden" name="action" value="edit">
                             <button class="btn">Edit</button>
                         </form>
-                        <form method="post" class="d-inline" onsubmit="return confirm('are you sure you want to delete this book?');">
+                        <form method="post" class="d-inline" onsubmit="return confirm('are you sure you want to delete this record?');">
                             <input type="hidden" name="id" value="<?= (int)$row['id'] ?>">
                             <input type="hidden" name="action" value="delete">
                             <button class="btn">Delete</button>
